@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Domain.Entities;
 using AutoMapper;
+using Application.Features.Products.Rules;
 
 namespace Application.Features.Products.Commands.Create
 {
@@ -24,18 +25,22 @@ namespace Application.Features.Products.Commands.Create
 
             IProductRepository _productRepository;
             IMapper _mapper;
+            ProductBusinessRules _productBusinessRules;
 
-            public CreateProductCommandHandler(IProductRepository productRepository, IMapper mapper)
+            public CreateProductCommandHandler(IProductRepository productRepository, IMapper mapper, ProductBusinessRules productBusinessRules)
             {
                 _productRepository = productRepository;
                 _mapper = mapper;
+                _productBusinessRules = productBusinessRules;
             }
 
             public async Task<CreatedProductDto> Handle(CreateProductCommand request, CancellationToken cancellationToken)
             {
+                await _productBusinessRules.ProductNameShouldNotBeExistesd(request.ProductName);
 
 
-                return  _mapper.Map<CreatedProductDto>(await _productRepository.AddAsync(_mapper.Map<Product>(request)));
+
+                return _mapper.Map<CreatedProductDto>(await _productRepository.AddAsync(_mapper.Map<Product>(request)));
             }
         }
 
