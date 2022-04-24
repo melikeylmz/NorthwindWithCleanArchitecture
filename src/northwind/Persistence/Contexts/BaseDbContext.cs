@@ -59,6 +59,14 @@ namespace Persistence.Contexts
 
 
             });
+
+            modelBuilder.Entity<UserOperationClaim>(b =>
+            {
+                b.ToTable("UserOperationClaims").HasKey(k => k.Id);
+                b.Property(p => p.Id).HasColumnName("Id");
+                b.HasOne(p => p.OperationClaim);
+                b.HasOne(p => p.User);
+            });
         }
     }
 }

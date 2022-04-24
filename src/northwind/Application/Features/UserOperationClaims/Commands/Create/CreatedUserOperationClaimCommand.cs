@@ -21,7 +21,7 @@ namespace Application.Features.UserOperationClaims.Commands.Create
         {
 
             public IUserOperationClaimRepository _operationClaimRepository;
-            IMapper _mapper;
+            public   IMapper _mapper;
 
             public CreatedUserOperationClaimHandle(IUserOperationClaimRepository operationClaimRepository, IMapper mapper)
             {
@@ -34,8 +34,8 @@ namespace Application.Features.UserOperationClaims.Commands.Create
 
                 var userOperationClaim = _mapper.Map<UserOperationClaim>(request);
                 var addUserClaim=await  _operationClaimRepository.AddAsync(userOperationClaim);
-
-                return _mapper.Map<CreatedUserOperationClaimDto>(addUserClaim);
+              
+              return _mapper.Map<CreatedUserOperationClaimDto>(addUserClaim);
 
 
             }

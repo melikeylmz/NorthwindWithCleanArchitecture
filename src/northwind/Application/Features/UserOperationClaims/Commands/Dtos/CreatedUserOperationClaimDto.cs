@@ -12,8 +12,7 @@ namespace Application.Features.UserOperationClaims.Commands.Dtos
         public int UserId { get; set; }
         public int OperationClaimId { get; set; }
 
-        public string UserName { get; set; }
-        public string OperationClaimName { get; set; }
+ 
 
     }
 }

@@ -28,7 +28,7 @@ namespace Application.Features.Products.Profiles
             CreateMap<Product,UpdatedProductDto>().ReverseMap();
           
 
-            CreateMap<Product, ProductListDto>().ForMember(p => p.CategoryName, opt => opt.MapFrom(p => p.Category.CategoryName));
+            CreateMap<Product, ProductListDto>().ForMember(p => p.CategoryName, opt => opt.MapFrom(p => p.Category.CategoryName)).ReverseMap();
             CreateMap<IPaginate<Product>, ProductListModel>().ReverseMap();
         }
     }

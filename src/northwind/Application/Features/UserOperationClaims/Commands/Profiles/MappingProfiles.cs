@@ -17,11 +17,7 @@ namespace Application.Features.UserOperationClaims.Commands.Profiles
 
         public MappingProfiles()
         {
-            CreateMap<UserOperationClaim, CreatedUserOperationClaimDto>()
-                .ForMember(p => p.UserName, opt => opt.MapFrom(p => p.User.Email))
-                .ForMember(p => p.OperationClaimName, opt => opt.MapFrom(p => p.OperationClaim.Name))
-                .ReverseMap()
-                ;
+            CreateMap<UserOperationClaim, CreatedUserOperationClaimDto>().ReverseMap();
             CreateMap<UserOperationClaim, CreatedUserOperationClaimCommand>().ReverseMap();
         }
 
