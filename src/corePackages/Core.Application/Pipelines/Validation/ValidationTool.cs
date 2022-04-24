@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Application.Pipelines
+namespace Core.Application.Pipelines.Validation
 {
     public class ValidationTool
     {

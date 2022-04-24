@@ -1,6 +1,6 @@
 ﻿using Application.Features.Category.Rules;
 using Application.Features.Products.Rules;
-using Core.Application.Pipelines;
+using Core.Application.Pipelines.Validation;
 using Core.Mailing;
 using Core.Mailing.MailkitImplementations;
 using FluentValidation;
