@@ -28,7 +28,7 @@ namespace Application.Services.AuthService
                                                               include: u =>
                                                                   u.Include(u => u.OperationClaim)
              );
-            IList<OperationClaim> operationClaims =
+            List<OperationClaim> operationClaims =
                 userOperationClaims.Items.Select(u => new OperationClaim
                 { Id = u.Id, Name = u.OperationClaim.Name }).ToList();
 

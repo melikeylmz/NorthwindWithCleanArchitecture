@@ -1,8 +1,10 @@
 ﻿using Application.Features.Category.Rules;
 using Application.Features.Products.Rules;
+using Application.Services.AuthService;
 using Core.Application.Pipelines.Validation;
 using Core.Mailing;
 using Core.Mailing.MailkitImplementations;
+using Core.Security.Jwt;
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,6 +31,8 @@ namespace Application
 
             services.AddScoped<ProductBusinessRules>();
             services.AddScoped<CategoryBusinessRules>();
+            services.AddScoped<IAuthService,AuthManager>();
+            services.AddTransient<ITokenHelper,JwtHelper>();
 
 
             return services;
