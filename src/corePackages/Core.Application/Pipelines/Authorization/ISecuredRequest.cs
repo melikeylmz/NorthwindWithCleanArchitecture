@@ -10,6 +10,6 @@ namespace Core.Application.Pipelines.Authorization
     {
 
 
-        string[] Roles { get; set; }
+        string[] Roles { get;}
     }
 }

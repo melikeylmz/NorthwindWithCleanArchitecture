@@ -10,16 +10,20 @@ using Domain.Entities;
 using AutoMapper;
 using Application.Features.Products.Rules;
 using Core.Mailing;
+using Core.Application.Pipelines.Authorization;
 
 namespace Application.Features.Products.Commands.Create
 {
-    public class CreateProductCommand:IRequest<CreatedProductDto>
+    public class CreateProductCommand:IRequest<CreatedProductDto>, ISecuredRequest
     {
         public int CategoryId { get; set; }
         public string ProductName { get; set; }
         public decimal UnitPrice { get; set; }
         public short UnitsInStock { get; set; }
         public string QuantityPerUnit { get; set; }
+        public string[] Roles => new string[] { "Product.add" };
+
+        
 
         public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand, CreatedProductDto>
         {
@@ -48,7 +52,7 @@ namespace Application.Features.Products.Commands.Create
 
                 };
 
-                _mailService.SendMail(mail);
+             //   _mailService.SendMail(mail);
                 return _mapper.Map<CreatedProductDto>(await _productRepository.AddAsync(_mapper.Map<Product>(request)));
             }
         }
