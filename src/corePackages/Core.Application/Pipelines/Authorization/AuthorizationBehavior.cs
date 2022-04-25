@@ -1,4 +1,5 @@
-﻿using Core.Security.Extensions;
+﻿using Core.CrossCuttingConserns.Exceptions;
+using Core.Security.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.IdentityModel.Tokens;
@@ -28,7 +29,7 @@ namespace Core.Application.Pipelines.Authorization
 
             if (isClaimRolesMatchedWithRequestRoles)
             {
-                throw new Exception("You are not authorized");
+                throw new BusinessException("You are not authorized");
             }
 
             TResponse response = await next();

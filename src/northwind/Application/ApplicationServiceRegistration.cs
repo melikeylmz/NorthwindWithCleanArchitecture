@@ -39,6 +39,7 @@ namespace Application
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
             services.AddSingleton<IMailService, MailkitMailService>();
             services.AddSingleton<LoggerServiceBase, FileLogger>();
+           services.AddSingleton<LoggerServiceBase, MsSqlLogger>();
             services.AddScoped<ProductBusinessRules>();
             services.AddScoped<CategoryBusinessRules>();
             services.AddScoped<IAuthService,AuthManager>();

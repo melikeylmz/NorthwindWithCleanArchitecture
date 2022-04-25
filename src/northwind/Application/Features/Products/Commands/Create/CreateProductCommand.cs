@@ -15,7 +15,7 @@ using Core.Application.Pipelines.Logging;
 
 namespace Application.Features.Products.Commands.Create
 {
-    public class CreateProductCommand:IRequest<CreatedProductDto>, ISecuredRequest
+    public class CreateProductCommand:IRequest<CreatedProductDto>, ISecuredRequest, ILoggableRequest
     {
         public int CategoryId { get; set; }
         public string ProductName { get; set; }
