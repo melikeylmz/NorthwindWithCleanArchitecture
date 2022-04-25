@@ -2,6 +2,12 @@
 using Application.Features.Products.Rules;
 using Application.Services.AuthService;
 using Core.Application.Pipelines.Authorization;
+using Core.Application.Pipelines.Logging;
+using Core.Application.Pipelines.Validation;
+using Core.CrossCuttingConserns.Logging.Serilog;
+using Core.CrossCuttingConserns.Logging.Serilog.Loggers;
+
+using Core.Application.Pipelines.Logging;
 using Core.Application.Pipelines.Validation;
 using Core.Mailing;
 using Core.Mailing.MailkitImplementations;
@@ -30,8 +36,9 @@ namespace Application
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(AuthorizationBehavior<,>));
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
             services.AddSingleton<IMailService, MailkitMailService>();
-
+            services.AddSingleton<LoggerServiceBase, FileLogger>();
             services.AddScoped<ProductBusinessRules>();
             services.AddScoped<CategoryBusinessRules>();
             services.AddScoped<IAuthService,AuthManager>();

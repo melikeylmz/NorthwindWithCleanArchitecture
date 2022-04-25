@@ -2,6 +2,7 @@
 using Application.Features.Category.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
+using Core.Application.Pipelines.Logging;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Category.Commands.Create
 {
-    public  class CreateCategoryCommand:IRequest<CreatedCategoryDto>
+    public  class CreateCategoryCommand:IRequest<CreatedCategoryDto>, ILoggableRequest
     {
         public string CategoryName { get; set; }
         public class CreateCategoryCommandHandler : IRequestHandler<CreateCategoryCommand, CreatedCategoryDto>

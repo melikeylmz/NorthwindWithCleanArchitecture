@@ -11,6 +11,7 @@ using AutoMapper;
 using Application.Features.Products.Rules;
 using Core.Mailing;
 using Core.Application.Pipelines.Authorization;
+using Core.Application.Pipelines.Logging;
 
 namespace Application.Features.Products.Commands.Create
 {
@@ -21,7 +22,7 @@ namespace Application.Features.Products.Commands.Create
         public decimal UnitPrice { get; set; }
         public short UnitsInStock { get; set; }
         public string QuantityPerUnit { get; set; }
-        public string[] Roles => new string[] { "Product.add" };
+        public string[] Roles => new string[] { "product.add" };
 
         
 
@@ -32,7 +33,7 @@ namespace Application.Features.Products.Commands.Create
             IMapper _mapper;
             ProductBusinessRules _productBusinessRules;
             IMailService _mailService;
-
+         
             public CreateProductCommandHandler(IProductRepository productRepository, IMapper mapper, ProductBusinessRules productBusinessRules, IMailService mailService)
             {
                 _productRepository = productRepository;
