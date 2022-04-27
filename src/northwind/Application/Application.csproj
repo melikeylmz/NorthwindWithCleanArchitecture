@@ -23,6 +23,7 @@
     <Folder Include="Features\Orders\Commands\" />
     <Folder Include="Features\Orders\Validations\" />
     <Folder Include="Features\Orders\Rules\" />
+    <Folder Include="Features\Payments\Rules\" />
   </ItemGroup>
 
   <ItemGroup>

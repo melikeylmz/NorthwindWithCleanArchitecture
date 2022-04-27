@@ -22,6 +22,8 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Application.Services.OutServices;
+using Application.Services.OutServices.Adaptors;
 
 namespace Application
 {
@@ -39,12 +41,14 @@ namespace Application
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
             services.AddSingleton<IMailService, MailkitMailService>();
             services.AddSingleton<LoggerServiceBase, FileLogger>();
-           services.AddSingleton<LoggerServiceBase, MsSqlLogger>();
+            services.AddSingleton<LoggerServiceBase, MsSqlLogger>();
+           
             services.AddScoped<ProductBusinessRules>();
             services.AddScoped<CategoryBusinessRules>();
+            
             services.AddScoped<IAuthService,AuthManager>();
             services.AddTransient<ITokenHelper,JwtHelper>();
-
+            services.AddSingleton<IPosService, FakeServiceAdaptor>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             return services;
         }
