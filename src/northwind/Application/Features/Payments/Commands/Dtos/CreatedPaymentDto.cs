@@ -8,5 +8,10 @@ namespace Application.Features.Payments.Commands.Dtos
 {
     public  class CreatedPaymentDto
     {
+        public int Id { get; set; }
+        public int UserId { get; set; }
+        public int OrderId { get; set; }
+        public decimal Total { get; set; }
+        public DateTime Date { get; set; }
     }
 }

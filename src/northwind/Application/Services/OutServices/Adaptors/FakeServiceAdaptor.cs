@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Application.Services.OutServices.Request;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,11 +9,14 @@ namespace Application.Services.OutServices.Adaptors
 {
     public class FakeServiceAdaptor : IPosService
     {
-        public bool MakePayment(string creditCartNo, string holderName, string expirationDate, string csv, decimal total)
-        {
-          FakePosServices fakePosServices = new FakePosServices();
+      
 
-            return fakePosServices.MakePayment(creditCartNo, holderName, expirationDate, csv, total);
+        public bool MakePayment(PosRequest posRequest)
+        {
+            FakePosServices fakePosServices = new FakePosServices();
+
+            return fakePosServices.MakePayment(posRequest.CreditCartNo,posRequest.HolderName, posRequest.ExpirationDate, posRequest.Csv,posRequest.Total);
+
         }
     }
 }

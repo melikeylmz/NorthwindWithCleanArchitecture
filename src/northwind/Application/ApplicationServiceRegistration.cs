@@ -24,6 +24,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Application.Services.OutServices;
 using Application.Services.OutServices.Adaptors;
+using Application.Features.Payments.Rules;
+using Application.Services.BalanceService;
 
 namespace Application
 {
@@ -45,12 +47,16 @@ namespace Application
            
             services.AddScoped<ProductBusinessRules>();
             services.AddScoped<CategoryBusinessRules>();
+            services.AddScoped<CreatePaymentBussinessRules>();
             
             services.AddScoped<IAuthService,AuthManager>();
             services.AddTransient<ITokenHelper,JwtHelper>();
             services.AddSingleton<IPosService, FakeServiceAdaptor>();
+            services.AddScoped<IUserBalanceService, UserBalanceManager>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             return services;
         }
+
+       
     }
 }

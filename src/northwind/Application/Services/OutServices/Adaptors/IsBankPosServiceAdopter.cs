@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Application.Services.OutServices.Request;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,10 +9,13 @@ namespace Application.Services.OutServices.Adaptors
 {
     internal class IsBankPosServiceAdopter : IPosService
     {
-        public bool MakePayment(string creditCartNo, string holderName, string expirationDate, string csv, decimal total)
+      
+
+        public bool MakePayment(PosRequest posRequest)
         {
             IsBankPosService isBankPosService = new IsBankPosService();
-            return isBankPosService.Pay(total, creditCartNo, holderName, expirationDate, csv);
+
+            return isBankPosService.Pay(posRequest.Total,posRequest.CreditCartNo, posRequest.HolderName, posRequest.ExpirationDate, posRequest.Csv);
 
         }
     } 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Application.Services.OutServices.Request;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ namespace Application.Services.OutServices
 {
     public  interface IPosService
     {
-        bool MakePayment(string creditCartNo, string holderName, string expirationDate, string csv, decimal total);
+        bool MakePayment(PosRequest posRequest);
         
     }
 }
