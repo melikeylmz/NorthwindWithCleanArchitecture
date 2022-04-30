@@ -50,11 +50,11 @@ namespace Application.Features.Payments.Commands.Create
             {
 
 
-                _createPaymentBussinessRules.CheckExpirationDate(request.ExpirationDate);
+                 await  _createPaymentBussinessRules.CheckExpirationDate(request.ExpirationDate);
                 PosRequest  posRequest=new PosRequest { Total=request.Total,CreditCartNo=request.CreditCartNo,
                 ExpirationDate=request.ExpirationDate, Csv=request.Csv,HolderName=request.HolderName
                 };
-                var UserBalance = (await _userBalanceService.GetBalancesAsync(request.UserId));
+                var UserBalance = await _userBalanceService.GetBalancesAsync(request.UserId);
                 if (request.Total <= UserBalance.Balance)
                 {
                     if (_postService.MakePayment(posRequest))
@@ -64,7 +64,7 @@ namespace Application.Features.Payments.Commands.Create
                         CreatedPaymentDto  createdPaymentDto = _mapper.Map<CreatedPaymentDto>(addPayment);
                         var userBalance= new UserBalance { UserId=UserBalance.UserId,Id=UserBalance.Id, Balance=UserBalance.Balance-request.Total };
                         
-                         _userBalanceService.UpdateUserBalance(userBalance);
+                        var updateBalance=_userBalanceService.UpdateUserBalance(userBalance);
                        
                         
                         return createdPaymentDto;
